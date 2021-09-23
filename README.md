@@ -1,177 +1,125 @@
-# Simple Piano - Samuel Tomko
-
-Program predstavuje simuláciu hry na klavíri. Umožňuje uživateľovi hrať na grafickom
-klavíri stláčaním klávies na klávesnici, meniť hudobný nástroj, pustiť si prednastavené
-pesničky, či nahrať svoju vlastnú pesničku a uložiť ju ako WAV súbor. Jedná sa o zápočtový program
-z predmetu Programovanie 2 NPRG031, pre rok 2020/2021.
-
-## Špecifikácia programu
-
-### Pôvodná verzia
-
-Program je vytvorený pomocou WinForms a jedná sa o desktopovú simuláciu hry na klavíri.
-
-Po spustení programu sa otvorí interaktívne okno, na ktorom sú vykreslené klávesy
-klavíra v rozsahu dvoch oktáv. Každá klávesa vydáva jej pridelený tón, ak na ňu uživateľ
-klikne myšou, alebo ak stlačí na klávesnici príslušnú klávesu. Akonáhle sa klávesa aktivuje,
-preblikne červenou farbou.
-
-Ďalej je v okne niekoľko tlačidiel:
+# Simple Piano
  
-1. **Tlačidlo "Help"** po stlačení zobrazí podrobnú nápovedu, ako sa s programom zachádza.
+The program is a simulation of a piano which allows you to play on one, to change
+an instrument, to play 3 default songs and to record and save your own song as a WAV file.
 
-2. **Tlačidlo "Options"** zobrazí okno, v ktorom sa dá nastaviť hlasitosť aplikácie,
-zobrazenie nôt na klávesách a zvuk nástroja, aký má klavír vydávať (klavír, orgán, gitara, 
-husle alebo trúbka).
+## Specification of the program
 
-3. **Tlačidlo "Play"** má pri sebe ComboBox, v ktorom sú názvy pesničiek:
-"Happy Birthday", "Jingle Bells" a "Ode to Joy". Po stlačení "Play" sa práve 
-vybraná pesnička automaticky zahrá.
+The program was created using C# language - WinForms and is a desktop simulation of a piano.
 
-4. **Tlačidlo "Stop"** zastaví prehrávanie aktuálnej pesničky.
+After the start, an interactive window with piano keys shows up. The range of the tones
+is two octaves. Every key produces corresponding tone when left-clicked on or when the user
+presses the corresponding key on the keyboard. 
 
-5. **Tlačidlo "Edit Mode"** presunie aplikáciu do tkzv. "Edit módu", v ktorom bude môcť uživateľ nahrať
-svoju vlastnú pesničku. 
-Okno sa týmto tranformuje následovne:	
+There are several buttons in the window:
+ 
+1. **Button "Help"** when pressed, shows a guide how to work with the application.
 
-Tlačidla "Play" a "Stop" a ComboBox zmiznú. Tlačidlo "Edit Mode" bude nahradené tlačidlom "Exit Edit Mode".
-Pribudnú tlačidlá "Record" a "Stop Recording". Po stlačení "Record" bude môcť uživateľ hrať
-na klavíri a aplikácia bude túto hru zaznamenávať. Po stlačení "Stop Recording" sa nahrávanie preruší.
-Po tomto sa zviditeľní tlačidlo "Export To Wav", ktoré uloží poslednú nahrávku na uživateľom zvolené miesto,
-vo formáte .wav.
+2. **Button "Options"** shows a window in which the volume of the application, 
+visibility of the notes on the piano keys and an instrument can be changed.
+The user can change from 5 instruments - piano, organ, guitar, violin or trumpet.
 
-### Zmeny voči povôdnej verzii - detaily, v ktorých sa finálna verzia líši
-"Edit Mode" je nahradený tlačidlom "Record Mode". Funkcia je rovnaká ako v pôvodnej špecifikácii, líši sa len v detailoch.
-1. Tlačidlo otvorí nové okno, v ktorom sú 2 tlačidlá: "Start recording" a "Stop recording"
-2. Po stlačení "Start recording" sa otvorí dialógové okno, pomocou ktorého uživateľ zvolí lokalitu, kam sa uloží nahrávka.
-3. Po stlačení "Stop recording" (alebo po zavretí okna počas nahrávania) sa otvorí priečinok s nahrávkou.
+3. **Button "Play"** is next to a ComboBox, in which there are names of the songs:
+"Happy Birthday", "Jingle Bells" and "Ode to Joy". When "Play" is pressed the corresponding
+song is automatically played.
 
-## Uživateľská dokumentácia
+4. **Button "Stop"** stops the song that is currently playing.
 
-Program funguje tak, ako bolo špecifikované vyššie.
+5. **Button "Start Recording"** opens a dialog window in which the user chooses the location where
+a recording will be saved and starts recording. 
 
-Príslušné klávesy pre jednotlivé tóny sú v tomto poradí (zľava doprava):
-W, 3, E, 4, R, T, 6, Y, 7, U, 8, I,
-Z, S, X, D, C, V, G, B, H, N, J, M, ","
+6. **Button "Stop Recording"** stops recording and opens a directory with the recorded audio.	
 
-V pravej hornej časti okna je tlačidlo **"Show Help"**, ktoré zobrazí v dolnej časti okna
-nápovedu, ako pracovať s programom. Opätovným stlačením táto nápoveda zmizne.
+## Code documentation
 
-V ľavej časti okna sa nachádza combobox, v ktorom si uživateľ môže vybrať jednú z troch
-prednastavených pesničiek. Práve vybranú pesničku môže spustiť stlačením tlačidla "Play"
-a zastaviť ju tlačidlom **"Stop"**. Ak uživateľ stlačí **"Stop"**, pesnička sa "resetuje" a pri
-ďalšom stlačení **"Play"** sa začne hrať od začiatku.
+### Used libraries 
 
-V pravej časti okna sú tlačidlá **"Options"** a **"Record Mode"**.
+The program uses 2 libraries which are freeware for non-profit use: NAudio and BASS
+http://www.un4seen.com/   and    https://github.com/naudio/NAudio
 
-Po stlačení **"Options"** sa otvorí nové okno, kde uživateľ môže nastaviť niekoľko vecí.
+### Files needed for the program to run correctly
 
-1. Potiahnutím kurzora **"Volume"** sa zmení hlasitosť aplikácie (zľava doprava sa zvyšuje).
+1. In the "Tones" directory there are 5 subdirectories, each for one instrument. Each of those contains 25 WAV files, which correspond to the tones. 
+Do not change the names of these files as it will break the program.
 
-2. Kliknutím na combobox možno zvoliť iný zvuk pre klavír, na výber má uživateľ z 5 nástrojov.
-Po výbere nástroja je nutné stlačiť tlačidlo **"Set Instrument"**. Zmena sa zaznamená akonáhle
-tlačidlo **"Set Instrument"** zmení stav.
+2. In the "Songs" directory there are 3 TXT files for each song that can be played automatically on the piano.
+They are read-only and on each line there is a tone and length of the tone (in ms), separated by space.
+Empty lines are ignored.
 
-3. V okne je taktiež možné zaškrtnúť 2 checkboxy, a tým na klavíri zobraziť príslušné tóny
-klávies, alebo príslušné klávesy na klávesnici.
+3. File bass.dll contains the BASS library.
 
-Po stlačení **"Record Mode"** sa otvorí okno s dvoma tlačidlami. 
-Toto okno slúži na nahranie zvuku z počítača do súboru vo WAV formáte.
+### PianoKey class
 
-1. Po stlačení **"Start Recording"** sa otvorí dialógové okno, vďaka ktorému môže uživateľ zvoliť
-miesto v počítači, kam chce svoju nahrávku uložiť.
-Od tohto momentu sa zaznamenáva všetok systémový zvuk počítača, teda aj hra na klavíri.
+The class represents one key of the piano. When initializing, it takes the name of tone (string), PictureBox and Color (white or black)
+as parameters.
 
-2. Stlačením **"Stop Recording"** sa nahrávanie zastaví a automaticky sa otvorí priečinok, v ktorom
-sa nahrávka nachádza.
+BlickDelay constant - in ms, says how fast should the key blick when pressed.
 
-## Programátorská dokumentácia
+Variables:
+1. PictureBox, string of the tone and a Color
+2. PressedOnce - auxilliary bool for the Play method
+3. Sound - integerated reprezentation of the sound, from BASS library
 
-### Použité knižnice
-
-V programe sú použité 2 knižnice na prácu o zvukom: NAudio a BASS, oboje s freeware licenciou, ak sa nejedná o profitový projekt.
-http://www.un4seen.com/   a    https://github.com/naudio/NAudio
-
-### Súbory potrebné na chod programu
-
-Nasledujúce súbory sa nachádzajú v priečinku SimplePiano\bin\Debug:
-1. V priečinku "Tones" sa nachádza 5 podpriečinkov pre každý hudobný nástroj. V každom podpriečinku je 25 WAV súborov, každý odpovedá jednému tónu pre 
-daný nástroj. Tieto súbory sa pri štarte programu načítajú do pamäti a ďalej sa s nimi pracuje. Zmena názvov súborov ako aj priečinkov vyústi v 
-nefunkčnosť programu.
-
-2. V priečinku "Songs" sú 3 TXT súbory obsahujúce návod, ako zahrať konkrétnu pieseň. Sú read-only a na každom riadku je jeden tón, ktorý má program
-zahrať, spolu s dĺžkou ako dlho má trvať (v milisekundách). Prázdne riadky sú ignorované.
-
-3. Súbor bass.dll je potrebný pre správne skompilovanie programu, keďže obsahuje spomínanú knižnicu.
-
-### Trieda PianoKey
-
-Trieda reprezentuje jednu klávesu klavíra. Pri inicializácii je potrebné jej zadať tón vo forme stringu, PictureBox a farbu (čiernu ak ide
-o poltón, bielu inak).
-
-Konštanta BlickDelay - v milisekundách vyjadruje ako rýchlo má klávesa prebliknúť.
-
-Premenné:
-1. PictureBox, string tónu a Color
-2. PressedOnce - pomocný bool pre Play metodu
-3. Sound - integerová reprezentácia zvuku, z knižnice BASS
-
-Metody:
-1. **SetInstrument** - dostane stringový parameter, ktorý musí byť rovnaký, ako je názov podpriečinku, ktorý obsahuje tóny vo formáte WAV.
-Na základe stringu zmení zvuk tónu.
-2. **Play** - zahrá aktuálne nastavený zvuk
-3. **Release** - umožní opätovné zavolanie metody Play. Toto je tu preto, aby sa nespúšťal stále ten istý tón, ak uživateľ drží stlačenú jednu klávesu.
-4. **PlayOnce** - zavolá Play a potom release.
-5. **Blick** - prevedie animáciu stlačenia klávesy. 
+Methods:
+1. **SetInstrument** - takes a string parameter which must be one of the following: "Piano", "Organ", "Guitar", "Violin" or "Trumpet"
+The instrument is then changed accordingly.
+2. **Play** - play the initiated sound
+3. **Release** - makes it possible to call the Play method again. Called when the key on the keyboard is released.
+4. **PlayOnce** - calls Play and then Release.
+5. **Blick** - does the animation of key being pressed. 
 
 
-### Trieda MainForm
+### MainForm class
 
-Trieda reprezentuje hlavné okno, ktoré sa spustí ako prvé. Jej metody sú rozčlenené do regiónov podľa logických súvislostí.
+Represents the main window. Its methods are sorted to regions logically.
 
-1. **Metody pre výnimky**
-2. **Metody na zmenu zvuku**
-3. **Metody pre stlačenie/pustenie klávesy na klávesnici**
-4. **Metody na zobrazenie príslušných tónov a kláves**
-5. **Metody pre kliknutie na klávesu** - jednoduchá funkcia, pri kliknutí na klávesu sa zahrá príslušný tón.
-6. **Metody pre tlačidlá** - priamočiaré metody, až na **PlayButton_Click** metódu:
-Táto obsahuje jednoduchý algoritmus, ktorý prečíta jeden zo spomínaných TXT súborov. Číta ho riadok po riadku, zhora dolu a podľa obsahu
-riadku zahrá príslušný tón. Metoda je async, keďže využíva "await", aby takto simulovala dĺžku tónu  v milisekundách.
-7. **Inicializačné metody** - volajú sa z konštruktoru triedy. Inicializujú premenné pre klávesy a taktiež slovník, ktorý tieto premenné
-obsahuje a priraďuje im stringové kľúče, ktoré odpovedajú názvom WAV súborov príslušných tónov.
+1. **Key press handlers**
+2. **Tones and Keys show handlers**
+3. **Button handlers**
+4. **Initialization handlers** - called from the constructor of the class. Variables for piano keys and also dictionaries 
+are initialized here.
 
-Ďalej metoda **MainForm_FormClosing** ošetrí prípad, kedy nahrávanie beží a uživateľ sa rozhodne zatvoriť aplikáciu bez zastavenia nahrávania.
-Metoda **SendAllWhiteToBack** pošle všetky biele klávesy dozadu - využitie pri animácii "bliknutia klávesy".
+Method **MainForm_FormClosing** is called when a recording is running and the application is closed without stopping the recording.
 
-### Trieda Options
+### Options class
 
-Reprezentácia okna "Options". Metody tejto triedy volajú metody triedy MainForm.
+Representation of the "Options" window. Methods of this class call methods of the MainForm class.
 
-### Trieda RecordMode
+### ExceptionHandlers class
 
-Reprezentácia okna "Record Mode". Využíva knižnicu NAudio na zachytenie systémového zvuku.
-Využíva 2 triedy z tejto knižnice: WaveFileWriter a WasapiLoopbackCapture
-Metody:
-1. **StartRecord_Click** - inicializuje tieto 2 triedy - Capture zachytáva systémové audio a writer ho potom zapisuje do WAV súboru.
-Obsahuje 2 jednoduché lambda funkcie, ktoré zabezpečia zápis zvuku z bufferu do súboru a nakoniec začne samotné nahrávanie.
-2. **CancelRecording** - zastaví nahrávanie (a zobrazí priečinok, kam sa súbor nahral). Táto funkcia je volaná, ak uživateľ stlačí
-Stop Recoring tlačidlo, zavrie Record Mode okno alebo zavrie aplikáciu. 
+Contains two methods, each for one possible exception. 
 
-## Poznámka
+Method **NotFound** is called when a file was not found.
+Method **InvalidScript** is called when there was an error in **PlaySong** method in **SongPlayer** class.
 
-Všetky zvuky pre klavír sú získané z aplikácie MuseScore 3, ktorá je freeware a dovoľuje používať jej zvukové nahrávky bez nutnosti kúpy licenie.
+### SongPlayer class
 
-# Update po konzultácii
+This class is used when the "Play" button is pressed. 
 
-1. Metódy Form1_KeyDown, Form1_KeyUp a Mouse event handlery boli zjednodušené a zobecnené
-2. Pribudla trieda **SongPlayer**, v ktorej sa nachádzajú pôvodné metódy PlayButton_Click a StopButton_Click
-3. Pribudla trieda **SoundChanger**, v ktorej sa nachádzajú pôvodné metódy ChangeInstrument a ChangeVolume
-4. Pribudla trieda **ExceptionHandlers**, v ktorej sa nachádzajú pôvodné metódy na riešenie výnimiek
-5. Bola odstránená inštancia "Self" v triede MainForm, namiesto nej sa na MainForm predáva referencia tam, kde je to potrebné
-6. Priečinky **Tones** a **Songs** sa už nenachádzajú v priečinku **bin**, ale pri builde sa tam prekopítujú
+Method **PlaySong** reads one of the TXT files mentioned above and plays their content.
+If the TXT file is in wrong format or if the file is missing, the excepiton is raised.
 
-# Druhý update po konzultácii
+Method **StopSong** disables the Stop button, breaking the loop in the **PlaySong** method.
 
-1. Úprava názvov premenných a komentárov
-2. Použitie "using" v triede SongPlayer, metóde PlaySong
-3. Nahradil som Formu **RecordMode** triedou Record. Nahrávanie teraz funguje pomocou dvoch tlačidiel, ktoré sú súčasťou hlavného okna.
+### SoundChanger class
+
+This class manages the change of the sound's volume and instrument for each tone.
+
+Method **ChangeInstrument** changes the instrument for each piano key.
+Method **ChangeVolume** changes the volume for each piano key.
+
+### Record class
+
+Representation of the "Record Mode". Uses the NAudio library to catch the system sound.
+Uses 2 classes from this library: WaveFileWriter and WasapiLoopbackCapture
+Methods:
+1. **StartRecord_Click** - inicializes these 2 classes - Capture captures system audio and writer writes it to WAV file.
+Contains 2 simple lambda functions that ensure the sound from buffer to file is written and finally the recording starts.
+2. **CancelRecording** - stops recording (and displays the directory where it was saved). This method is called when the user 
+presses Stop Recoring button or closes the application. 
+
+## Note
+
+All of the sounds for the piano were recorded from the MuseScore 3 application. It is a freeware and allows the use of it's recordings without the need
+of purchasing the license. 
+https://musescore.org
